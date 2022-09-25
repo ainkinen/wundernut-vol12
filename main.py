@@ -1,21 +1,13 @@
-from easyocr import Reader  # type: ignore
 from wordsegment import load, segment  # type: ignore
 
 from src.img_utils import extract_img_data
+from src.ocr import extract_paragraph
 
 
 def main():
     img_data = extract_img_data('parchment.png')
 
-    # Extract text from image
-    reader = Reader(lang_list=['en'])
-    orc_result = reader.readtext(
-        img_data,
-        allowlist='ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        paragraph=True,
-        detail=0,  # Simplified output. Only the extracted paragraphs.
-    )[0]
-    extracted_text = orc_result.replace(' ', '')  # Remove whitespace to get lines as a continuous string
+    extracted_text = extract_paragraph(img_data)
     print(f'{extracted_text=}')
 
     # Decrypt text
