@@ -1,8 +1,7 @@
-from wordsegment import load, segment  # type: ignore
-
 from src.crypto_utils import rot5_decrypt
 from src.img_utils import extract_img_data
 from src.ocr import extract_paragraph
+from src.segmenting import segment
 
 
 def main():
@@ -14,10 +13,7 @@ def main():
     decrypted_text = rot5_decrypt(extracted_text)
     print(f'{decrypted_text=}')
 
-    # Segment text for readability
-    load()
-    segments = segment(decrypted_text)
-    segmented_text = ' '.join(segments)
+    segmented_text = segment(decrypted_text)
     print(f'{segmented_text=}')
 
 
