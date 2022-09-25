@@ -1,5 +1,6 @@
 from wordsegment import load, segment  # type: ignore
 
+from src.crypto_utils import rot5_decrypt
 from src.img_utils import extract_img_data
 from src.ocr import extract_paragraph
 
@@ -10,9 +11,7 @@ def main():
     extracted_text = extract_paragraph(img_data)
     print(f'{extracted_text=}')
 
-    # Decrypt text
-    rot5 = ''.maketrans('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'FGHIJKLMNOPQRSTUVWXYZABCDE')  # Ceasar cipher with a shift of 5
-    decrypted_text = extracted_text.translate(rot5)
+    decrypted_text = rot5_decrypt(extracted_text)
     print(f'{decrypted_text=}')
 
     # Segment text for readability
