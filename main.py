@@ -1,20 +1,16 @@
-import numpy as np
-from PIL import Image  # type: ignore
 from easyocr import Reader  # type: ignore
 from wordsegment import load, segment  # type: ignore
 
+from src.img_utils import extract_img_data
+
 
 def main():
-    parchment = Image.open('parchment.png')
-
-    # Extract visible text
-    blue_channel = parchment.getchannel('B')
-    extracted_image = blue_channel.point(lambda v: 255 if v < 230 else 0)
+    img_data = extract_img_data('parchment.png')
 
     # Extract text from image
     reader = Reader(lang_list=['en'])
     orc_result = reader.readtext(
-        np.array(extracted_image),
+        img_data,
         allowlist='ABCDEFGHIJKLMNOPQRSTUVWXYZ',
         paragraph=True,
         detail=0,  # Simplified output. Only the extracted paragraphs.
