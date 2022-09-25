@@ -6,7 +6,17 @@
 - Dependency management: Poetry ~1.2.0
     - https://python-poetry.org/docs/#installation
 
+### Optional
+
+- GNU Make
+
 ## Running the solution
+
+### With GNU Make
+
+1. Run `make run`
+
+### Manually
 
 Run all commands in the project folder.
 
