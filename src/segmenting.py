@@ -1,8 +1,14 @@
-from wordsegment import load, segment as wordsegment  # type: ignore
+from functools import cache
 
-load()
+import wordsegment as ws  # type: ignore
+
+
+@cache
+def _load_word_data():
+    ws.load()
 
 
 def segment(input_str: str) -> str:
-    segments = wordsegment(input_str)
+    _load_word_data()
+    segments = ws.segment(input_str)
     return ' '.join(segments)
