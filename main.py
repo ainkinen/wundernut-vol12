@@ -1,7 +1,7 @@
 import numpy as np
-from PIL import Image
-from easyocr import Reader
-from wordsegment import load, segment
+from PIL import Image  # type: ignore
+from easyocr import Reader  # type: ignore
+from wordsegment import load, segment  # type: ignore
 
 
 def main():
